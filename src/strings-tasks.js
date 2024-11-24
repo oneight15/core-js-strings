@@ -349,8 +349,23 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const monoliteStr = str
+    .split('')
+    .filter(
+      (i) => i !== ' ' && i !== ',' && i !== '.' && i !== '!' && i !== '?'
+    )
+    .map((i) => i.toLowerCase())
+    .join('');
+  const strReverse = str
+    .split('')
+    .reverse()
+    .filter(
+      (i) => i !== ' ' && i !== ',' && i !== '.' && i !== '!' && i !== '?'
+    )
+    .map((i) => i.toLowerCase())
+    .join('');
+  return monoliteStr === strReverse;
 }
 
 /**
@@ -365,8 +380,15 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const arrOfStr = sentence.split(' ');
+  let longestWord = arrOfStr[0];
+  for (let i = 1; i < arrOfStr.length; i += 1) {
+    if (arrOfStr[i].length > longestWord.length) {
+      longestWord = arrOfStr[i];
+    }
+  }
+  return longestWord;
 }
 
 /**
@@ -402,8 +424,15 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const arr = str.split('');
+  const newArr = arr.map((i) => {
+    if (i.toLowerCase() === i) {
+      return i.toUpperCase();
+    }
+    return i.toLowerCase();
+  });
+  return newArr.join('');
 }
 
 /**
@@ -487,8 +516,20 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const alphabetIn = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const alphabetOut = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let res = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const ind = alphabetIn.indexOf(str[i]);
+    if (ind < 0) {
+      res += str[i];
+    } else {
+      res += alphabetOut[ind];
+    }
+  }
+
+  return res;
 }
 
 /**
